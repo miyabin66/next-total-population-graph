@@ -1,5 +1,5 @@
 'use client';
-import { usePopulation } from '@/hooks/usePopulation';
+import { usePopulation } from '@/hooks/api/usePopulation';
 import { throwError } from '@/lib/throwError';
 import { useEffect } from 'react';
 
