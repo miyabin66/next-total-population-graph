@@ -28,6 +28,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Set Env values
+        run: |
+          echo "RESAS_API_KEY=${{ secrets.RESAS_API_KEY }}" >> "$GITHUB_ENV"
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> "$GITHUB_ENV"
+
       - name: Install packages
         run: yarn
 
