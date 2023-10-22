@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "eslint": "next lint . --fix --ext .js,.ts,.tsx,.json --ignore-path .gitignore"
   },
   "dependencies": {
     "next": "13.5.6",
