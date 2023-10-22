@@ -1,0 +1,37 @@
+{
+  "extends": [
+    "stylelint-config-recess-order",
+    "stylelint-config-standard-scss",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-value-no-unknown-custom-properties",
+    "stylelint-csstree-validator",
+    "stylelint-declaration-block-no-ignored-properties",
+    "stylelint-no-unsupported-browser-features",
+    "stylelint-order"
+  ],
+  "rules": {
+    "block-no-empty": true,
+    "color-hex-length": "short",
+    "color-no-invalid-hex": true,
+    "csstools/value-no-unknown-custom-properties": true,
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-block-no-redundant-longhand-properties": true,
+    "declaration-property-value-no-unknown": true,
+    "no-descending-specificity": true,
+    "no-duplicate-selectors": true,
+    "order/order": ["custom-properties", "declarations"],
+    "order/properties-order": ["width", "height"],
+    "plugin/declaration-block-no-ignored-properties": true,
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "browsers": ["> 5%"]
+      }
+    ],
+    "property-no-unknown": true,
+    "selector-pseudo-element-colon-notation": "double"
+  }
+}
