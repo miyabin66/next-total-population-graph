@@ -7,8 +7,11 @@
     "build": "next build",
     "start": "next start",
     "eslint": "eslint . --fix --ext .js,.ts,.tsx,.json --ignore-path .gitignore",
+    "eslint:check": "eslint . --ext .js,.ts,.tsx,.json --ignore-path .gitignore",
     "stylelint": "stylelint '**/*.scss' --fix",
+    "stylelint:check": "stylelint '**/*.scss'",
     "prettier": "prettier --write .",
+    "prettier:check": "prettier .",
     "lint": "yarn eslint && yarn stylelint && yarn prettier"
   },
   "dependencies": {
