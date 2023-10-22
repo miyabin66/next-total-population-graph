@@ -1,10 +1,10 @@
-import { URL } from '@/env';
+import { BASE_URL } from '@/env';
 import { throwError } from '@/lib/throwError';
 import type { GetPrefecturesResponse } from '@/interfaces/prefectures';
 
 export const Selector = async () => {
   try {
-    const res = await fetch(`${URL}/api/prefectures`);
+    const res = await fetch(`${BASE_URL}/api/prefectures`);
     const data = (await res.json()) as GetPrefecturesResponse;
 
     return (

@@ -1,2 +1,2 @@
 export const RESAS_API_KEY = process.env.RESAS_API_KEY;
-export const URL = process.env.URL;
+export const BASE_URL = process.env.BASE_URL;
