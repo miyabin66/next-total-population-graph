@@ -2,7 +2,8 @@ name: PR Check
 
 on:
   pull_request:
-    types: opened
+    branches:
+      - main
 
 jobs:
   pr-check:
