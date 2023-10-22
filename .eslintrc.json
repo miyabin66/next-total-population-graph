@@ -24,7 +24,7 @@
   "plugins": ["import", "unused-imports", "unicorn"],
   "overrides": [
     {
-      "files": ["src/app/*.tsx"],
+      "files": ["src/app/*.tsx", "src/app/api/**/*.ts"],
       "rules": {
         "import/no-default-export": "off",
         "import/no-unused-modules": "off"
