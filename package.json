@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "eslint": "next lint . --fix --ext .js,.ts,.tsx,.json --ignore-path .gitignore",
+    "eslint": "eslint . --fix --ext .js,.ts,.tsx,.json --ignore-path .gitignore",
     "prettier": "prettier --write .",
-    "lint": "yarn prettier & yarn eslint"
+    "lint": "yarn eslint & yarn prettier"
   },
   "dependencies": {
     "next": "13.5.6",

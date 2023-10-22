@@ -31,7 +31,7 @@
       }
     },
     {
-      "files": [".ts"],
+      "files": ["*.ts", "*.tsx"],
       "extends": [
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
@@ -39,40 +39,41 @@
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": "./tsconfig.json"
+      },
+      "rules": {
+        "@typescript-eslint/consistent-type-imports": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "format": ["PascalCase"],
+            "selector": "class"
+          },
+          {
+            "format": ["PascalCase"],
+            "selector": "interface"
+          },
+          {
+            "format": ["PascalCase"],
+            "selector": "typeAlias"
+          }
+        ],
+        "@typescript-eslint/no-empty-interface": "error",
+        "@typescript-eslint/no-explicit-any": "error"
       }
     },
     {
-      "files": ["*.tsx"],
+      "files": ["src/components/*.tsx"],
       "rules": {
         "unicorn/filename-case": [
           "warn",
           {
-            "case": "pascalCase",
-            "ignore": ["./src/app/**.tsx"]
+            "case": "pascalCase"
           }
         ]
       }
     }
   ],
   "rules": {
-    "@typescript-eslint/consistent-type-imports": "error",
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "format": ["PascalCase"],
-        "selector": "class"
-      },
-      {
-        "format": ["PascalCase"],
-        "selector": "interface"
-      },
-      {
-        "format": ["PascalCase"],
-        "selector": "typeAlias"
-      }
-    ],
-    "@typescript-eslint/no-empty-interface": "error",
-    "@typescript-eslint/no-explicit-any": "error",
     "eqeqeq": "error",
     "import/no-default-export": "error",
     "import/no-unused-modules": [
@@ -82,7 +83,21 @@
       }
     ],
     "import/no-unresolved": "error",
-    "import/order": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "index",
+          "sibling",
+          "parent",
+          "internal",
+          "external",
+          "builtin",
+          "object",
+          "type"
+        ]
+      }
+    ],
     "no-console": "error",
     "require-await": "error",
     "unicorn/filename-case": [
