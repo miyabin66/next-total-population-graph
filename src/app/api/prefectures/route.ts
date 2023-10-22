@@ -1,7 +1,7 @@
 import { RESAS_API_KEY } from '@/env';
 import { RESAS_API_URL } from '@/constants';
 import { NextResponse } from 'next/server';
-import type { GetPrefecturesResponse } from '@/interface/prefectures';
+import type { GetPrefecturesResponse } from '@/interfaces/prefectures';
 
 export async function GET() {
   const res = await fetch(`${RESAS_API_URL}/prefectures`, {
