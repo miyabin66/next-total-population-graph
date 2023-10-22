@@ -1,4 +1,4 @@
-export interface GetPerYearResponse {
+export interface GetPopulationResponse {
   message: null;
   result: {
     boundaryYear: number;

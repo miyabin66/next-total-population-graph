@@ -1,7 +1,7 @@
 import { RESAS_API_KEY } from '@/env';
 import { RESAS_API_URL } from '@/constants';
 import { NextResponse } from 'next/server';
-import type { GetPerYearResponse } from '@/interfaces/population';
+import type { GetPopulationResponse } from '@/interfaces/population';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
       },
     },
   );
-  const data = (await res.json()) as GetPerYearResponse;
+  const data = (await res.json()) as GetPopulationResponse;
 
   return NextResponse.json(data);
 }
