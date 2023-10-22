@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "eslint": "eslint . --fix --ext .js,.ts,.tsx,.json --ignore-path .gitignore",
+    "stylelint": "stylelint '**/*.scss' --fix",
     "prettier": "prettier --write .",
-    "lint": "yarn eslint & yarn prettier"
+    "lint": "yarn eslint & yarn stylelint & yarn prettier"
   },
   "dependencies": {
     "next": "13.5.6",
