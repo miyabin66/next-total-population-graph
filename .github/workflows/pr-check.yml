@@ -2,7 +2,8 @@ name: PR Check
 
 on:
   pull_request:
-    types: opened
+    branches:
+      - main
 
 jobs:
   pr-check:
@@ -26,6 +27,11 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
+      - name: Set Env values
+        run: |
+          echo "RESAS_API_KEY=${{ secrets.RESAS_API_KEY }}" >> "$GITHUB_ENV"
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> "$GITHUB_ENV"
 
       - name: Install packages
         run: yarn

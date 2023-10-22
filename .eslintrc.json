@@ -22,6 +22,11 @@
     "sourceType": "module"
   },
   "plugins": ["import", "unused-imports", "unicorn"],
+  "settings": {
+    "import/resolver": {
+      "alias": true
+    }
+  },
   "overrides": [
     {
       "files": ["src/app/*.tsx", "src/app/api/**/*.ts"],
