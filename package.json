@@ -45,5 +45,9 @@
     "stylelint-scss": "^5.2.1",
     "stylelint-value-no-unknown-custom-properties": "^4.0.0",
     "typescript": "^5"
+  },
+  "engines": {
+    "npm": "Please use yarn instead.",
+    "yarn": "1"
   }
 }
