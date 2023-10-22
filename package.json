@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "eslint": "next lint . --fix --ext .js,.ts,.tsx,.json --ignore-path .gitignore",
+    "eslint": "eslint . --fix --ext .js,.ts,.tsx,.json --ignore-path .gitignore",
     "prettier": "prettier --write .",
-    "lint": "yarn prettier & yarn eslint"
+    "lint": "yarn eslint & yarn prettier"
   },
   "dependencies": {
     "next": "13.5.6",
@@ -31,6 +31,7 @@
     "eslint-plugin-unicorn": "^48.0.1",
     "eslint-plugin-unused-imports": "^3.0.0",
     "prettier": "^3.0.3",
+    "sass": "^1.69.4",
     "typescript": "^5"
   }
 }
