@@ -1,10 +1,16 @@
+'use client';
 import { Graph } from './Graph';
 import { Selector } from './Selector';
+import type { GetPrefecturesResponse } from '@/interfaces/prefectures';
 
-export const Contaier = () => {
+interface Props {
+  PrefecturesData: GetPrefecturesResponse;
+}
+
+export const Contaier = ({ PrefecturesData }: Props) => {
   return (
     <>
-      <Selector />
+      <Selector PrefecturesData={PrefecturesData} />
       <Graph />
     </>
   );
