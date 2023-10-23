@@ -5,8 +5,13 @@ import Highcharts from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import { useEffect, useMemo } from 'react';
+import type { DisplayConditions } from '@/interfaces/prefectures';
 
-export const Graph = () => {
+interface Props {
+  displayCondition: DisplayConditions;
+}
+
+export const Graph = ({ displayCondition }: Props) => {
   const { populationData, mutatePopulation, isLoading } = usePopulation({
     prefCode: 11,
   });
@@ -20,7 +25,9 @@ export const Graph = () => {
   }, [mutatePopulation]);
 
   const options = useMemo(() => {
-    const list = populationData?.result.data[0];
+    const list = populationData?.result.data.filter(
+      (data) => data.label === displayCondition,
+    )[0];
     const year = list?.data.map((item) => item.year);
     const value = list?.data.map((item) => item.value);
 
@@ -45,7 +52,7 @@ export const Graph = () => {
         },
       ],
     };
-  }, [populationData]);
+  }, [displayCondition, populationData]);
 
   if (isLoading) return <></>;
 

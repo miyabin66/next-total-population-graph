@@ -28,7 +28,7 @@ export const Contaier = ({ PrefecturesData }: Props) => {
         displayCondition={displayCondition}
         changeDisplayCondition={changeDisplayCondition}
       />
-      <Graph />
+      <Graph displayCondition={displayCondition} />
     </>
   );
 };
