@@ -11,11 +11,14 @@ export const usePopulation = ({ prefCode }: Props) => {
     prefCode: prefCode?.toString() || '',
   }).toString();
 
-  const { data: populationData, mutate: mutatePopulation } =
-    useSWR<GetPopulationResponse>(
-      prefCode ? `/population/composition/perYear?${urlSearchParam}` : null,
-      fetcher,
-    );
+  const {
+    data: populationData,
+    mutate: mutatePopulation,
+    isLoading,
+  } = useSWR<GetPopulationResponse>(
+    prefCode ? `/population/composition/perYear?${urlSearchParam}` : null,
+    fetcher,
+  );
 
-  return { populationData, mutatePopulation };
+  return { populationData, mutatePopulation, isLoading };
 };
