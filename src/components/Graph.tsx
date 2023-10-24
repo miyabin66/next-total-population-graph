@@ -1,9 +1,10 @@
 'use client';
 import { usePopulation } from '@/hooks/api/usePopulation';
+import { useHighcharts } from '@/hooks/useHighcharts';
 import Highcharts from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { DisplayConditions } from '@/interfaces/prefectures';
 import type { PopulationResult } from '@/interfaces/population';
 
@@ -21,6 +22,7 @@ export const Graph = ({ displayCondition, prefCode }: Props) => {
   const { populationData } = usePopulation({
     prefCode,
   });
+  const { options } = useHighcharts({ displayCondition, graphData });
 
   useEffect(() => {
     if (!populationData) return;
@@ -41,42 +43,6 @@ export const Graph = ({ displayCondition, prefCode }: Props) => {
       return prev;
     });
   }, [populationData]);
-
-  const options = useMemo(() => {
-    if (!graphData) return {};
-
-    const list = graphData.map((item) => {
-      return item.data.filter((data) => data.label === displayCondition)[0];
-    });
-    const year = list[0].data.map((dataItem) => {
-      dataItem.year;
-    });
-    const series = list.map((listItem) => {
-      return {
-        data: listItem.data.map((dataItem) => {
-          return dataItem.value;
-        }),
-      };
-    });
-
-    return {
-      title: {
-        text: 'グラフ',
-      },
-      xAxis: {
-        title: {
-          text: '年度',
-        },
-        categories: year,
-      },
-      yAxis: {
-        title: {
-          text: list[0].label,
-        },
-      },
-      series,
-    };
-  }, [displayCondition, graphData]);
 
   return (
     <div>
