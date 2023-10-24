@@ -1,19 +1,21 @@
 export interface GetPopulationResponse {
   message: null;
-  result: {
-    boundaryYear: number;
-    data: PerYearItemList[];
-  };
+  result: PopulationResult;
 }
 
-interface PerYearItemList {
-  label: PerYearItemLabel;
-  data: PerYearItemValue[];
+export interface PopulationResult {
+  boundaryYear: number;
+  data: PopulationItemList[];
 }
 
-type PerYearItemLabel = '総人口' | '年少人口' | '生産年齢人口' | '老年人口';
+interface PopulationItemList {
+  label: PopulationItemLabel;
+  data: PopulationItemValue[];
+}
 
-interface PerYearItemValue {
+type PopulationItemLabel = '総人口' | '年少人口' | '生産年齢人口' | '老年人口';
+
+interface PopulationItemValue {
   year: number;
   value: number;
   rate?: number;
