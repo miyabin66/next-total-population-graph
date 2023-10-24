@@ -1,19 +1,21 @@
 'use client';
 import { usePopulation } from '@/hooks/api/usePopulation';
-import { throwError } from '@/lib/throwError';
 import Highcharts from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { DisplayConditions } from '@/interfaces/prefectures';
+import type { PopulationResult } from '@/interfaces/population';
 
 interface Props {
   displayCondition: DisplayConditions;
+  prefCode: number;
 }
 
-export const Graph = ({ displayCondition }: Props) => {
-  const { populationData, mutatePopulation, isLoading } = usePopulation({
-    prefCode: 11,
+export const Graph = ({ displayCondition, prefCode }: Props) => {
+  const [graphData, setGraphData] = useState<PopulationResult[]>();
+  const { populationData } = usePopulation({
+    prefCode,
   });
 
   if (typeof Highcharts === 'object') {
@@ -21,20 +23,51 @@ export const Graph = ({ displayCondition }: Props) => {
   }
 
   useEffect(() => {
-    mutatePopulation().catch((e) => throwError(e));
-  }, [mutatePopulation]);
+    if (!populationData) return;
+
+    const data = populationData.result;
+
+    setGraphData((prev) => {
+      if (!prev) {
+        return [data];
+      }
+
+      const exsistData = prev.filter((item) => item === data);
+
+      if (exsistData.length === 0) {
+        return [...prev, data];
+      }
+
+      return prev;
+    });
+  }, [populationData]);
 
   const options = useMemo(() => {
-    const list = populationData?.result.data.filter(
-      (data) => data.label === displayCondition,
-    )[0];
-    const year = list?.data.map((item) => item.year);
-    const value = list?.data.map((item) => item.value);
-
-    return {
+    const title = {
       title: {
         text: 'グラフ',
       },
+    };
+    if (!graphData) {
+      return title;
+    }
+
+    const list = graphData.map((item) => {
+      return item.data.filter((data) => data.label === displayCondition)[0];
+    });
+    const year = list[0].data.map((dataItem) => {
+      dataItem.year;
+    });
+    const series = list.map((listItem) => {
+      return {
+        data: listItem.data.map((dataItem) => {
+          return dataItem.value;
+        }),
+      };
+    });
+
+    return {
+      ...title,
       xAxis: {
         title: {
           text: '年度',
@@ -43,18 +76,12 @@ export const Graph = ({ displayCondition }: Props) => {
       },
       yAxis: {
         title: {
-          text: list?.label,
+          text: list[0].label,
         },
       },
-      series: [
-        {
-          data: value,
-        },
-      ],
+      series,
     };
-  }, [displayCondition, populationData]);
-
-  if (isLoading) return <></>;
+  }, [displayCondition, graphData]);
 
   return (
     <div>
