@@ -6,6 +6,7 @@ import type { MouseEventHandler } from 'react';
 import type {
   DisplayConditions,
   GetPrefecturesResponse,
+  PrefecturesList,
 } from '@/interfaces/prefectures';
 
 interface Props {
@@ -13,14 +14,18 @@ interface Props {
 }
 
 export const Contaier = ({ PrefecturesData }: Props) => {
-  const [prefCode, setPrefCode] = useState<number>();
+  const [currentPrefectures, setCurrentPrefectures] =
+    useState<PrefecturesList>();
   const [displayCondition, setDisplayCondition] =
     useState<DisplayConditions>('総人口');
 
   const changePrefectures: MouseEventHandler<HTMLInputElement> = useCallback(
     (e) => {
       if (!e.currentTarget.checked) return;
-      setPrefCode(Number(e.currentTarget.value));
+      setCurrentPrefectures({
+        prefCode: Number(e.currentTarget.id),
+        prefName: e.currentTarget.value,
+      });
     },
     [],
   );
@@ -38,8 +43,11 @@ export const Contaier = ({ PrefecturesData }: Props) => {
         changeDisplayCondition={changeDisplayCondition}
         changePrefectures={changePrefectures}
       />
-      {prefCode !== undefined && (
-        <Graph displayCondition={displayCondition} prefCode={prefCode} />
+      {currentPrefectures !== undefined && (
+        <Graph
+          displayCondition={displayCondition}
+          currentPrefectures={currentPrefectures}
+        />
       )}
     </>
   );

@@ -5,22 +5,25 @@ import Highcharts from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
 import { useEffect, useState } from 'react';
-import type { DisplayConditions } from '@/interfaces/prefectures';
-import type { PopulationResult } from '@/interfaces/population';
+import type {
+  DisplayConditions,
+  PrefecturesList,
+} from '@/interfaces/prefectures';
+import type { PopulationGraphData } from '@/interfaces/population';
 
 interface Props {
   displayCondition: DisplayConditions;
-  prefCode: number;
+  currentPrefectures: PrefecturesList;
 }
 
 if (typeof Highcharts === 'object') {
   HighchartsExporting(Highcharts);
 }
 
-export const Graph = ({ displayCondition, prefCode }: Props) => {
-  const [graphData, setGraphData] = useState<PopulationResult[]>();
+export const Graph = ({ displayCondition, currentPrefectures }: Props) => {
+  const [graphData, setGraphData] = useState<PopulationGraphData[]>();
   const { populationData } = usePopulation({
-    prefCode,
+    prefCode: currentPrefectures.prefCode,
   });
   const { options } = useHighcharts({ displayCondition, graphData });
 
@@ -31,18 +34,23 @@ export const Graph = ({ displayCondition, prefCode }: Props) => {
 
     setGraphData((prev) => {
       if (!prev) {
-        return [data];
+        return [{ result: data, prefName: currentPrefectures.prefName }];
       }
 
-      const exsistData = prev.filter((item) => item === data);
+      const exsistData = prev.filter(
+        (item) => item.prefName === currentPrefectures.prefName,
+      );
 
       if (exsistData.length === 0) {
-        return [...prev, data];
+        return [
+          ...prev,
+          { result: data, prefName: currentPrefectures.prefName },
+        ];
       }
 
       return prev;
     });
-  }, [populationData]);
+  }, [currentPrefectures, populationData]);
 
   return (
     <div>

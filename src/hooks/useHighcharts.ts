@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import type { PopulationResult } from '@/interfaces/population';
+import type { PopulationGraphData } from '@/interfaces/population';
 import type { DisplayConditions } from '@/interfaces/prefectures';
 
 interface Props {
   displayCondition: DisplayConditions;
-  graphData: PopulationResult[] | undefined;
+  graphData: PopulationGraphData[] | undefined;
 }
 
 export const useHighcharts = ({ displayCondition, graphData }: Props) => {
@@ -12,16 +12,17 @@ export const useHighcharts = ({ displayCondition, graphData }: Props) => {
     if (!graphData) return {};
 
     const list = graphData.map((item) => {
-      return item.data.filter((data) => data.label === displayCondition)[0];
+      return item.result.data.filter(
+        (data) => data.label === displayCondition,
+      )[0];
     });
-    const year = list[0].data.map((dataItem) => {
-      dataItem.year;
-    });
-    const series = list.map((listItem) => {
+    const year = list[0].data.map((dataItem) => dataItem.year);
+    const series = list.map((listItem, i) => {
       return {
         data: listItem.data.map((dataItem) => {
           return dataItem.value;
         }),
+        name: graphData[i].prefName,
       };
     });
 

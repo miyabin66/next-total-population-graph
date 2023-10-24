@@ -26,7 +26,8 @@ export const Selector = ({
             <label key={item.prefCode}>
               <input
                 type="checkbox"
-                value={item.prefCode}
+                id={item.prefCode.toString()}
+                value={item.prefName}
                 onClick={changePrefectures}
               />
               {item.prefName}
