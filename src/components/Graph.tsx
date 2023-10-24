@@ -12,15 +12,15 @@ interface Props {
   prefCode: number;
 }
 
+if (typeof Highcharts === 'object') {
+  HighchartsExporting(Highcharts);
+}
+
 export const Graph = ({ displayCondition, prefCode }: Props) => {
   const [graphData, setGraphData] = useState<PopulationResult[]>();
   const { populationData } = usePopulation({
     prefCode,
   });
-
-  if (typeof Highcharts === 'object') {
-    HighchartsExporting(Highcharts);
-  }
 
   useEffect(() => {
     if (!populationData) return;
@@ -43,14 +43,7 @@ export const Graph = ({ displayCondition, prefCode }: Props) => {
   }, [populationData]);
 
   const options = useMemo(() => {
-    const title = {
-      title: {
-        text: 'グラフ',
-      },
-    };
-    if (!graphData) {
-      return title;
-    }
+    if (!graphData) return {};
 
     const list = graphData.map((item) => {
       return item.data.filter((data) => data.label === displayCondition)[0];
@@ -67,7 +60,9 @@ export const Graph = ({ displayCondition, prefCode }: Props) => {
     });
 
     return {
-      ...title,
+      title: {
+        text: 'グラフ',
+      },
       xAxis: {
         title: {
           text: '年度',
