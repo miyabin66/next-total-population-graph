@@ -9,12 +9,14 @@ interface Props {
   PrefecturesData: GetPrefecturesResponse;
   displayCondition: DisplayConditions;
   changeDisplayCondition: MouseEventHandler<HTMLInputElement>;
+  changePrefectures: MouseEventHandler<HTMLInputElement>;
 }
 
 export const Selector = ({
   PrefecturesData,
   displayCondition,
   changeDisplayCondition,
+  changePrefectures,
 }: Props) => {
   return (
     <>
@@ -22,7 +24,12 @@ export const Selector = ({
         {PrefecturesData.result.map((item) => {
           return (
             <label key={item.prefCode}>
-              <input type="checkbox" value={item.prefCode} />
+              <input
+                type="checkbox"
+                id={item.prefCode.toString()}
+                value={item.prefName}
+                onClick={changePrefectures}
+              />
               {item.prefName}
             </label>
           );

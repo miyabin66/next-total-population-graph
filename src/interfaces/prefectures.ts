@@ -1,11 +1,11 @@
 export interface GetPrefecturesResponse {
   message: null;
-  result: [
-    {
-      prefCode: number;
-      prefName: string;
-    },
-  ];
+  result: PrefecturesList[];
+}
+
+export interface PrefecturesList {
+  prefCode: number;
+  prefName: string;
 }
 
 export const DisplayConditionsList = {

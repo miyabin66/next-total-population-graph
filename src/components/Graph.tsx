@@ -1,60 +1,56 @@
 'use client';
 import { usePopulation } from '@/hooks/api/usePopulation';
-import { throwError } from '@/lib/throwError';
+import { useHighcharts } from '@/hooks/useHighcharts';
 import Highcharts from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
-import { useEffect, useMemo } from 'react';
-import type { DisplayConditions } from '@/interfaces/prefectures';
+import { useEffect, useState } from 'react';
+import type {
+  DisplayConditions,
+  PrefecturesList,
+} from '@/interfaces/prefectures';
+import type { PopulationGraphData } from '@/interfaces/population';
 
 interface Props {
   displayCondition: DisplayConditions;
+  currentPrefectures: PrefecturesList;
 }
 
-export const Graph = ({ displayCondition }: Props) => {
-  const { populationData, mutatePopulation, isLoading } = usePopulation({
-    prefCode: 11,
-  });
+if (typeof Highcharts === 'object') {
+  HighchartsExporting(Highcharts);
+}
 
-  if (typeof Highcharts === 'object') {
-    HighchartsExporting(Highcharts);
-  }
+export const Graph = ({ displayCondition, currentPrefectures }: Props) => {
+  const [graphData, setGraphData] = useState<PopulationGraphData[]>();
+  const { populationData } = usePopulation({
+    prefCode: currentPrefectures.prefCode,
+  });
+  const { options } = useHighcharts({ displayCondition, graphData });
 
   useEffect(() => {
-    mutatePopulation().catch((e) => throwError(e));
-  }, [mutatePopulation]);
+    if (!populationData) return;
 
-  const options = useMemo(() => {
-    const list = populationData?.result.data.filter(
-      (data) => data.label === displayCondition,
-    )[0];
-    const year = list?.data.map((item) => item.year);
-    const value = list?.data.map((item) => item.value);
+    const data = populationData.result;
 
-    return {
-      title: {
-        text: 'グラフ',
-      },
-      xAxis: {
-        title: {
-          text: '年度',
-        },
-        categories: year,
-      },
-      yAxis: {
-        title: {
-          text: list?.label,
-        },
-      },
-      series: [
-        {
-          data: value,
-        },
-      ],
-    };
-  }, [displayCondition, populationData]);
+    setGraphData((prev) => {
+      if (!prev) {
+        return [{ result: data, prefName: currentPrefectures.prefName }];
+      }
 
-  if (isLoading) return <></>;
+      const exsistData = prev.filter(
+        (item) => item.prefName === currentPrefectures.prefName,
+      );
+
+      if (exsistData.length === 0) {
+        return [
+          ...prev,
+          { result: data, prefName: currentPrefectures.prefName },
+        ];
+      }
+
+      return prev;
+    });
+  }, [currentPrefectures, populationData]);
 
   return (
     <div>
