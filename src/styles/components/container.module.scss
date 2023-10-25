@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  height: 100%;
+  border: 4px solid $color-blue;
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 4px solid $color-blue;
+}
+
+.wrapperSelector {
+  padding: 0 30px;
+}

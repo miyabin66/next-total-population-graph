@@ -1,6 +1,7 @@
 'use client';
 import { Graph } from './Graph';
 import { Selector } from './Selector';
+import styles from '@/styles/components/container.module.scss';
 import { useCallback, useState } from 'react';
 import type { MouseEventHandler } from 'react';
 import type {
@@ -47,13 +48,16 @@ export const Contaier = ({ PrefecturesData }: Props) => {
     }, []);
 
   return (
-    <>
-      <Selector
-        PrefecturesData={PrefecturesData}
-        displayCondition={displayCondition}
-        changeDisplayCondition={changeDisplayCondition}
-        changePrefectures={changePrefectures}
-      />
+    <section className={styles.container}>
+      <h1 className={styles.title}>都道府県人口データグラフ</h1>
+      <div className={styles.wrapperSelector}>
+        <Selector
+          PrefecturesData={PrefecturesData}
+          displayCondition={displayCondition}
+          changeDisplayCondition={changeDisplayCondition}
+          changePrefectures={changePrefectures}
+        />
+      </div>
       {currentPrefectures !== undefined && (
         <Graph
           checkedPrefectures={checkedPrefectures}
@@ -61,6 +65,6 @@ export const Contaier = ({ PrefecturesData }: Props) => {
           currentPrefectures={currentPrefectures}
         />
       )}
-    </>
+    </section>
   );
 };
