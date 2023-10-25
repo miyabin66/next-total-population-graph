@@ -11,21 +11,30 @@ import type {
 } from '@/interfaces/prefectures';
 import type { PopulationGraphData } from '@/interfaces/population';
 
-interface Props {
-  displayCondition: DisplayConditions;
-  currentPrefectures: PrefecturesList;
-}
-
 if (typeof Highcharts === 'object') {
   HighchartsExporting(Highcharts);
 }
 
-export const Graph = ({ displayCondition, currentPrefectures }: Props) => {
+interface Props {
+  checkedPrefectures: string[];
+  displayCondition: DisplayConditions;
+  currentPrefectures: PrefecturesList;
+}
+
+export const Graph = ({
+  checkedPrefectures,
+  displayCondition,
+  currentPrefectures,
+}: Props) => {
   const [graphData, setGraphData] = useState<PopulationGraphData[]>();
   const { populationData } = usePopulation({
     prefCode: currentPrefectures.prefCode,
   });
-  const { options } = useHighcharts({ displayCondition, graphData });
+  const { options } = useHighcharts({
+    checkedPrefectures,
+    displayCondition,
+    graphData,
+  });
 
   useEffect(() => {
     if (!populationData) return;
