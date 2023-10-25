@@ -12,11 +12,6 @@ const DEFAULT_OPTIONS = {
   title: {
     text: 'グラフ',
   },
-  xAxis: {
-    title: {
-      text: '年度',
-    },
-  },
   series: [],
 };
 
@@ -59,9 +54,7 @@ export const useHighcharts = ({
     });
 
     return {
-      title: {
-        text: 'グラフ',
-      },
+      ...DEFAULT_OPTIONS,
       xAxis: {
         title: {
           text: '年度',
