@@ -16,15 +16,26 @@ interface Props {
 export const Contaier = ({ PrefecturesData }: Props) => {
   const [currentPrefectures, setCurrentPrefectures] =
     useState<PrefecturesList>();
+  const [checkedPrefectures, setCheckedPrefectures] = useState<string[]>([]);
   const [displayCondition, setDisplayCondition] =
     useState<DisplayConditions>('総人口');
 
   const changePrefectures: MouseEventHandler<HTMLInputElement> = useCallback(
     (e) => {
-      if (!e.currentTarget.checked) return;
+      const currentValue = e.currentTarget.value;
+      if (!e.currentTarget.checked) {
+        setCheckedPrefectures((prev) =>
+          prev.filter((item) => !item.includes(currentValue)),
+        );
+        return;
+      }
+      setCheckedPrefectures((prev) => {
+        const currentArray = [...prev, currentValue];
+        return [...new Set(currentArray)];
+      });
       setCurrentPrefectures({
         prefCode: Number(e.currentTarget.id),
-        prefName: e.currentTarget.value,
+        prefName: currentValue,
       });
     },
     [],
@@ -45,6 +56,7 @@ export const Contaier = ({ PrefecturesData }: Props) => {
       />
       {currentPrefectures !== undefined && (
         <Graph
+          checkedPrefectures={checkedPrefectures}
           displayCondition={displayCondition}
           currentPrefectures={currentPrefectures}
         />

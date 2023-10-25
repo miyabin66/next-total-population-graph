@@ -3,26 +3,58 @@ import type { PopulationGraphData } from '@/interfaces/population';
 import type { DisplayConditions } from '@/interfaces/prefectures';
 
 interface Props {
+  checkedPrefectures: string[];
   displayCondition: DisplayConditions;
   graphData: PopulationGraphData[] | undefined;
 }
 
-export const useHighcharts = ({ displayCondition, graphData }: Props) => {
-  const options = useMemo(() => {
-    if (!graphData) return {};
+const DEFAULT_OPTIONS = {
+  title: {
+    text: 'グラフ',
+  },
+  xAxis: {
+    title: {
+      text: '年度',
+    },
+  },
+  series: [],
+};
 
-    const list = graphData.map((item) => {
+export const useHighcharts = ({
+  checkedPrefectures,
+  displayCondition,
+  graphData,
+}: Props) => {
+  const checkedData = useMemo(() => {
+    if (!graphData) return [];
+
+    return graphData.filter((item) => {
+      return checkedPrefectures.includes(item.prefName);
+    });
+  }, [checkedPrefectures, graphData]);
+
+  const conditionData = useMemo(() => {
+    if (checkedData.length === 0) return [];
+
+    return checkedData.map((item) => {
       return item.result.data.filter(
         (data) => data.label === displayCondition,
       )[0];
     });
-    const year = list[0].data.map((dataItem) => dataItem.year);
-    const series = list.map((listItem, i) => {
+  }, [checkedData, displayCondition]);
+
+  const options = useMemo(() => {
+    if (conditionData.length === 0) {
+      return DEFAULT_OPTIONS;
+    }
+
+    const year = conditionData[0].data.map((dataItem) => dataItem.year);
+    const series = conditionData.map((listItem, i) => {
       return {
         data: listItem.data.map((dataItem) => {
           return dataItem.value;
         }),
-        name: graphData[i].prefName,
+        name: checkedData[i].prefName,
       };
     });
 
@@ -38,12 +70,12 @@ export const useHighcharts = ({ displayCondition, graphData }: Props) => {
       },
       yAxis: {
         title: {
-          text: list[0].label,
+          text: conditionData[0].label,
         },
       },
       series,
     };
-  }, [displayCondition, graphData]);
+  }, [checkedData, conditionData]);
 
   return { options };
 };
