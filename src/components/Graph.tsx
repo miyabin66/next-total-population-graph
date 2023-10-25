@@ -11,14 +11,14 @@ import type {
 } from '@/interfaces/prefectures';
 import type { PopulationGraphData } from '@/interfaces/population';
 
+if (typeof Highcharts === 'object') {
+  HighchartsExporting(Highcharts);
+}
+
 interface Props {
   checkedPrefectures: string[];
   displayCondition: DisplayConditions;
   currentPrefectures: PrefecturesList;
-}
-
-if (typeof Highcharts === 'object') {
-  HighchartsExporting(Highcharts);
 }
 
 export const Graph = ({
