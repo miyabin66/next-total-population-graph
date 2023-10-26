@@ -3,6 +3,7 @@ import {
   type DisplayConditions,
   type GetPrefecturesResponse,
 } from '@/interfaces/prefectures';
+import styles from '@/styles/components/selector.module.scss';
 import type { MouseEventHandler } from 'react';
 
 interface Props {
@@ -19,11 +20,12 @@ export const Selector = ({
   changePrefectures,
 }: Props) => {
   return (
-    <>
-      <div>
+    <div className={styles.container}>
+      <h2 className={styles.title}>都道府県</h2>
+      <div className={styles.flexWrapper}>
         {PrefecturesData.result.map((item) => {
           return (
-            <label key={item.prefCode}>
+            <label key={item.prefCode} className={styles.label}>
               <input
                 type="checkbox"
                 id={item.prefCode.toString()}
@@ -35,7 +37,8 @@ export const Selector = ({
           );
         })}
       </div>
-      <div>
+      <h2 className={styles.title}>条件指定</h2>
+      <div className={styles.flexWrapper}>
         {Object.values(DisplayConditionsList).map((value) => {
           return (
             <label key={value}>
@@ -51,6 +54,6 @@ export const Selector = ({
           );
         })}
       </div>
-    </>
+    </div>
   );
 };

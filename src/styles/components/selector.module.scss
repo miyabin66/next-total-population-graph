@@ -1,0 +1,22 @@
+.container {
+  margin: 10px auto 0;
+  width: 600px;
+}
+
+.title {
+  font-weight: 700;
+  padding: 6px;
+  display: inline-block;
+  border: 2px solid $color-black;
+}
+
+.flexWrapper {
+  margin: 10px 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 10px;
+}
+
+.label {
+  width: 86px;
+}
