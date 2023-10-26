@@ -46,7 +46,6 @@
     "stylelint-config-standard-scss": "^11.0.0",
     "stylelint-csstree-validator": "^3.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
-    "stylelint-no-unsupported-browser-features": "^7.0.0",
     "stylelint-order": "^6.0.3",
     "stylelint-prettier": "^4.0.2",
     "stylelint-scss": "^5.2.1",

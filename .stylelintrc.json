@@ -9,7 +9,6 @@
     "stylelint-value-no-unknown-custom-properties",
     "stylelint-csstree-validator",
     "stylelint-declaration-block-no-ignored-properties",
-    "stylelint-no-unsupported-browser-features",
     "stylelint-order"
   ],
   "rules": {
@@ -24,12 +23,6 @@
     "order/order": ["custom-properties", "declarations"],
     "order/properties-order": ["width", "height"],
     "plugin/declaration-block-no-ignored-properties": true,
-    "plugin/no-unsupported-browser-features": [
-      true,
-      {
-        "browsers": ["> 5%"]
-      }
-    ],
     "property-no-unknown": true,
     "selector-pseudo-element-colon-notation": "double",
     "selector-class-pattern": "^[a-z][a-zA-Z0-9-]+$"
