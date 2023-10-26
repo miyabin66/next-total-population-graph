@@ -1,9 +1,13 @@
-import { Inter } from 'next/font/google';
+import { Noto_Sans_JP } from 'next/font/google';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import '@/styles/globals.scss';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Noto_Sans_JP({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
