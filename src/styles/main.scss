@@ -1,2 +1,8 @@
 $color-blue: blue;
 $color-black: black;
+
+@mixin sp {
+  @media (width <= 767px) {
+    @content;
+  }
+}
