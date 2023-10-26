@@ -61,9 +61,5 @@ export const Graph = ({
     });
   }, [currentPrefectures, populationData]);
 
-  return (
-    <div>
-      <HighchartsReact highcharts={Highcharts} options={options} />
-    </div>
-  );
+  return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
