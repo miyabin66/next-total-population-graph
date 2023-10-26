@@ -10,8 +10,13 @@
   border: 2px solid $color-black;
 }
 
-.prefecturesWrapper {
+.flexWrapper {
+  margin: 10px 0 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px 10px;
+  gap: 16px 10px;
+}
+
+.label {
+  width: 86px;
 }
