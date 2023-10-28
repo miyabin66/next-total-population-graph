@@ -44,7 +44,6 @@ export const Selector = ({
             <label key={value}>
               <input
                 type="radio"
-                name="display_conditions"
                 value={value}
                 onClick={changeDisplayCondition}
                 defaultChecked={displayCondition === value}
