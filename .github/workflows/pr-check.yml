@@ -36,14 +36,14 @@ jobs:
       - name: Install packages
         run: yarn
 
-      # - name: ESLint Check
-      #   run: yarn eslint:check
+      - name: ESLint Check
+        run: yarn eslint:check
 
-      # - name: Stylelint Check
-      #   run: yarn stylelint:check
+      - name: Stylelint Check
+        run: yarn stylelint:check
 
-      # - name: Prettier Check
-      #   run: yarn prettier:check
+      - name: Prettier Check
+        run: yarn prettier:check
 
       - name: Build Check
         run: yarn build

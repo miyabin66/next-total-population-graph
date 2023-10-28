@@ -13,9 +13,6 @@ export default async function Home() {
     const res = await fetch(`${BASE_URL}/api/prefectures`);
     const data = (await res.json()) as GetPrefecturesResponse;
 
-    // eslint-disable-next-line no-console
-    console.log(data);
-
     // Actions環境とローカル・サイト環境で帰ってくるデータ形式が違うので苦肉の策
     const prefecturesData = (
       (data as GetPrefecturesData).result !== undefined
@@ -25,7 +22,6 @@ export default async function Home() {
 
     return (
       <main className={styles.main}>
-        {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
         <Contaier prefecturesData={prefecturesData} />
       </main>
     );
