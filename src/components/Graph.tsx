@@ -40,21 +40,17 @@ export const Graph = ({
     if (!populationData) return;
 
     const data = populationData.result;
+    const prefName = currentPrefectures.prefName;
 
     setGraphData((prev) => {
       if (!prev) {
-        return [{ result: data, prefName: currentPrefectures.prefName }];
+        return [{ result: data, prefName }];
       }
 
-      const exsistData = prev.filter(
-        (item) => item.prefName === currentPrefectures.prefName,
-      );
+      const exsistData = prev.filter((item) => item.prefName === prefName);
 
       if (exsistData.length === 0) {
-        return [
-          ...prev,
-          { result: data, prefName: currentPrefectures.prefName },
-        ];
+        return [...prev, { result: data, prefName }];
       }
 
       return prev;
