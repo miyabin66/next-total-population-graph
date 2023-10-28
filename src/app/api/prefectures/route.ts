@@ -12,5 +12,5 @@ export async function GET() {
   });
   const data = (await res.json()) as GetPrefecturesResponse;
 
-  return NextResponse.json({ data }, { status: 200, headers: CORS_HEADERS });
+  return NextResponse.json(data, { status: 200, headers: CORS_HEADERS });
 }
