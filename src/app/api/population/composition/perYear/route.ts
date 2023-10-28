@@ -1,5 +1,5 @@
 import { RESAS_API_KEY } from '@/env';
-import { RESAS_API_URL } from '@/constants';
+import { CORS_HEADERS, RESAS_API_URL } from '@/constants';
 import { NextResponse } from 'next/server';
 import type { GetPopulationResponse } from '@/interfaces/population';
 
@@ -19,5 +19,5 @@ export async function GET(request: Request) {
   );
   const data = (await res.json()) as GetPopulationResponse;
 
-  return NextResponse.json(data);
+  return NextResponse.json(data, { status: 200, headers: CORS_HEADERS });
 }
