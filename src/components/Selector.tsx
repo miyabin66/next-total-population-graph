@@ -1,20 +1,20 @@
 import {
   DisplayConditionsList,
   type DisplayConditions,
-  type GetPrefecturesResponse,
+  type GetPrefecturesData,
 } from '@/interfaces/prefectures';
 import styles from '@/styles/components/selector.module.scss';
 import type { MouseEventHandler } from 'react';
 
 interface Props {
-  PrefecturesData: GetPrefecturesResponse;
+  prefecturesData: GetPrefecturesData;
   displayCondition: DisplayConditions;
   changeDisplayCondition: MouseEventHandler<HTMLInputElement>;
   changePrefectures: MouseEventHandler<HTMLInputElement>;
 }
 
 export const Selector = ({
-  PrefecturesData,
+  prefecturesData,
   displayCondition,
   changeDisplayCondition,
   changePrefectures,
@@ -23,7 +23,7 @@ export const Selector = ({
     <div className={styles.container}>
       <h2 className={styles.title}>都道府県</h2>
       <div className={styles.flexWrapper}>
-        {PrefecturesData.result.map((item) => {
+        {prefecturesData.result.map((item) => {
           return (
             <label key={item.prefCode} className={styles.label}>
               <input

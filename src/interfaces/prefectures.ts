@@ -1,4 +1,12 @@
-export interface GetPrefecturesResponse {
+export type GetPrefecturesResponse =
+  | GetPrefecturesData
+  | GetPrefecturesActionsResponse;
+
+export interface GetPrefecturesActionsResponse {
+  data: GetPrefecturesData;
+}
+
+export interface GetPrefecturesData {
   message: null;
   result: PrefecturesList[];
 }

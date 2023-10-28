@@ -6,15 +6,15 @@ import { useCallback, useState } from 'react';
 import type { MouseEventHandler } from 'react';
 import type {
   DisplayConditions,
-  GetPrefecturesResponse,
+  GetPrefecturesData,
   PrefecturesList,
 } from '@/interfaces/prefectures';
 
 interface Props {
-  PrefecturesData: GetPrefecturesResponse;
+  prefecturesData: GetPrefecturesData;
 }
 
-export const Contaier = ({ PrefecturesData }: Props) => {
+export const Contaier = ({ prefecturesData }: Props) => {
   const [currentPrefectures, setCurrentPrefectures] =
     useState<PrefecturesList>();
   const [checkedPrefectures, setCheckedPrefectures] = useState<string[]>([]);
@@ -52,7 +52,7 @@ export const Contaier = ({ PrefecturesData }: Props) => {
       <h1 className={styles.title}>都道府県人口データグラフ</h1>
       <div className={styles.wrapperSelector}>
         <Selector
-          PrefecturesData={PrefecturesData}
+          prefecturesData={prefecturesData}
           displayCondition={displayCondition}
           changeDisplayCondition={changeDisplayCondition}
           changePrefectures={changePrefectures}
