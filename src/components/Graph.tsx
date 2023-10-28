@@ -16,7 +16,6 @@ if (typeof Highcharts === 'object') {
 }
 
 interface Props {
-  checkedPrefectures: string[];
   displayCondition: DisplayConditions;
   currentPrefectures: PrefecturesList;
   graphData: PopulationGraphData[] | undefined;
@@ -24,7 +23,6 @@ interface Props {
 }
 
 export const Graph = ({
-  checkedPrefectures,
   displayCondition,
   currentPrefectures,
   graphData,
@@ -34,7 +32,6 @@ export const Graph = ({
     prefCode: currentPrefectures.prefCode,
   });
   const { options } = useHighcharts({
-    checkedPrefectures,
     displayCondition,
     graphData,
   });

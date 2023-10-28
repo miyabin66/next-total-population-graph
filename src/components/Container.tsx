@@ -12,7 +12,6 @@ interface Props {
 export const Contaier = ({ prefecturesData }: Props) => {
   const {
     currentPrefectures,
-    checkedPrefectures,
     displayCondition,
     graphData,
     changePrefectures,
@@ -33,7 +32,6 @@ export const Contaier = ({ prefecturesData }: Props) => {
       </div>
       {currentPrefectures !== undefined && (
         <Graph
-          checkedPrefectures={checkedPrefectures}
           displayCondition={displayCondition}
           currentPrefectures={currentPrefectures}
           graphData={graphData}
