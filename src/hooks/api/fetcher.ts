@@ -1,2 +1,2 @@
 export const fetcher = (url: string) =>
-  fetch(`/api${url}`).then((res) => res.json());
+  fetch(`/api${url}`, { mode: 'cors' }).then((res) => res.json());
