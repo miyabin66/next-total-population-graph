@@ -9,6 +9,7 @@ export default async function Home() {
     const res = await fetch(`${BASE_URL}/api/prefectures`);
     const data = (await res.json()) as GetPrefecturesResponse;
 
+    // eslint-disable-next-line no-console
     console.log(data);
 
     return (
