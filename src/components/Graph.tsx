@@ -4,7 +4,7 @@ import { useHighcharts } from '@/hooks/useHighcharts';
 import Highcharts from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsReact from 'highcharts-react-official';
-import { useEffect, useState } from 'react';
+import { type Dispatch, type SetStateAction, useEffect } from 'react';
 import type {
   DisplayConditions,
   PrefecturesList,
@@ -19,14 +19,17 @@ interface Props {
   checkedPrefectures: string[];
   displayCondition: DisplayConditions;
   currentPrefectures: PrefecturesList;
+  graphData: PopulationGraphData[] | undefined;
+  setGraphData: Dispatch<SetStateAction<PopulationGraphData[] | undefined>>;
 }
 
 export const Graph = ({
   checkedPrefectures,
   displayCondition,
   currentPrefectures,
+  graphData,
+  setGraphData,
 }: Props) => {
-  const [graphData, setGraphData] = useState<PopulationGraphData[]>();
   const { populationData } = usePopulation({
     prefCode: currentPrefectures.prefCode,
   });
@@ -59,7 +62,7 @@ export const Graph = ({
 
       return prev;
     });
-  }, [currentPrefectures, populationData]);
+  }, [currentPrefectures, populationData, setGraphData]);
 
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };

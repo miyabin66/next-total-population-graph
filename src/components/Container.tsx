@@ -3,6 +3,7 @@ import { Graph } from './Graph';
 import { Selector } from './Selector';
 import styles from '@/styles/components/container.module.scss';
 import { useCallback, useState } from 'react';
+import type { PopulationGraphData } from '@/interfaces/population';
 import type { MouseEventHandler } from 'react';
 import type {
   DisplayConditions,
@@ -20,6 +21,7 @@ export const Contaier = ({ prefecturesData }: Props) => {
   const [checkedPrefectures, setCheckedPrefectures] = useState<string[]>([]);
   const [displayCondition, setDisplayCondition] =
     useState<DisplayConditions>('総人口');
+  const [graphData, setGraphData] = useState<PopulationGraphData[]>();
 
   const changePrefectures: MouseEventHandler<HTMLInputElement> = useCallback(
     (e) => {
@@ -27,6 +29,9 @@ export const Contaier = ({ prefecturesData }: Props) => {
       if (!e.currentTarget.checked) {
         setCheckedPrefectures((prev) =>
           prev.filter((item) => !item.includes(currentValue)),
+        );
+        setGraphData(
+          (prev) => prev?.filter((item) => item.prefName !== currentValue),
         );
         return;
       }
@@ -63,6 +68,8 @@ export const Contaier = ({ prefecturesData }: Props) => {
           checkedPrefectures={checkedPrefectures}
           displayCondition={displayCondition}
           currentPrefectures={currentPrefectures}
+          graphData={graphData}
+          setGraphData={setGraphData}
         />
       )}
     </section>
