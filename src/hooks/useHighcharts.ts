@@ -3,7 +3,6 @@ import type { PopulationGraphData } from '@/interfaces/population';
 import type { DisplayConditions } from '@/interfaces/prefectures';
 
 interface Props {
-  checkedPrefectures: string[];
   displayCondition: DisplayConditions;
   graphData: PopulationGraphData[] | undefined;
 }
@@ -15,31 +14,19 @@ const DEFAULT_OPTIONS = {
   series: [],
 };
 
-export const useHighcharts = ({
-  checkedPrefectures,
-  displayCondition,
-  graphData,
-}: Props) => {
-  const checkedData = useMemo(() => {
-    if (!graphData) return [];
-
-    return graphData.filter((item) => {
-      return checkedPrefectures.includes(item.prefName);
-    });
-  }, [checkedPrefectures, graphData]);
-
+export const useHighcharts = ({ displayCondition, graphData }: Props) => {
   const conditionData = useMemo(() => {
-    if (checkedData.length === 0) return [];
+    if (!graphData || graphData.length === 0) return [];
 
-    return checkedData.map((item) => {
+    return graphData.map((item) => {
       return item.result.data.filter(
         (data) => data.label === displayCondition,
       )[0];
     });
-  }, [checkedData, displayCondition]);
+  }, [graphData, displayCondition]);
 
   const options = useMemo(() => {
-    if (conditionData.length === 0) {
+    if (!graphData || conditionData.length === 0) {
       return DEFAULT_OPTIONS;
     }
 
@@ -49,7 +36,7 @@ export const useHighcharts = ({
         data: listItem.data.map((dataItem) => {
           return dataItem.value;
         }),
-        name: checkedData[i].prefName,
+        name: graphData[i].prefName,
       };
     });
 
@@ -68,7 +55,7 @@ export const useHighcharts = ({
       },
       series,
     };
-  }, [checkedData, conditionData]);
+  }, [conditionData, graphData]);
 
   return { options };
 };

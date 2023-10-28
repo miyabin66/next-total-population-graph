@@ -1,3 +1,4 @@
+import { Input } from './Input';
 import {
   DisplayConditionsList,
   type DisplayConditions,
@@ -25,15 +26,14 @@ export const Selector = ({
       <div className={styles.flexWrapper}>
         {prefecturesData.result.map((item) => {
           return (
-            <label key={item.prefCode} className={styles.label}>
-              <input
-                type="checkbox"
-                id={item.prefCode.toString()}
-                value={item.prefName}
-                onClick={changePrefectures}
-              />
-              {item.prefName}
-            </label>
+            <Input
+              key={item.prefCode}
+              type={'checkbox'}
+              id={item.prefCode.toString()}
+              value={item.prefName}
+              onClick={changePrefectures}
+              className={styles.label}
+            />
           );
         })}
       </div>
@@ -41,16 +41,13 @@ export const Selector = ({
       <div className={styles.flexWrapper}>
         {Object.values(DisplayConditionsList).map((value) => {
           return (
-            <label key={value}>
-              <input
-                type="radio"
-                name="display_conditions"
-                value={value}
-                onClick={changeDisplayCondition}
-                defaultChecked={displayCondition === value}
-              />
-              {value}
-            </label>
+            <Input
+              key={value}
+              type={'radio'}
+              value={value}
+              onClick={changeDisplayCondition}
+              checked={displayCondition === value}
+            />
           );
         })}
       </div>
