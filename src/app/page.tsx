@@ -9,6 +9,8 @@ export default async function Home() {
     const res = await fetch(`${BASE_URL}/api/prefectures`);
     const data = (await res.json()) as GetPrefecturesResponse;
 
+    console.log(data);
+
     return (
       <main className={styles.main}>
         <Contaier PrefecturesData={data} />
