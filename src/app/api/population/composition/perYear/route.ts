@@ -19,5 +19,5 @@ export async function GET(request: Request) {
   );
   const data = (await res.json()) as GetPopulationResponse;
 
-  return NextResponse.json({ data }, { status: 200, headers: CORS_HEADERS });
+  return NextResponse.json(data, { status: 200, headers: CORS_HEADERS });
 }
