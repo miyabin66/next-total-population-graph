@@ -1,4 +1,9 @@
-export const OPTIONS_SERIES = [
+interface HighChartsOptionsSeries {
+  data: number[];
+  name: string;
+}
+
+export const OPTIONS_SERIES: HighChartsOptionsSeries[] = [
   {
     data: [
       5039206, 5171800, 5184287, 5338206, 5575989, 5679439, 5643647, 5692321,

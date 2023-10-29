@@ -1,4 +1,6 @@
-export const PREFECTURES_DATA = {
+import type { GetPrefecturesData } from '@/interfaces/prefectures';
+
+export const PREFECTURES_DATA: GetPrefecturesData = {
   message: null,
   result: [
     {
