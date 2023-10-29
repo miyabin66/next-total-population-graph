@@ -1,5 +1,5 @@
 import styles from '@/styles/page.module.scss';
-import { Contaier } from '@/components/Container';
+import { Container } from '@/components/Container';
 import { BASE_URL } from '@/env';
 import { throwError } from '@/lib/throwError';
 import type {
@@ -22,7 +22,7 @@ export default async function Home() {
 
     return (
       <main className={styles.main}>
-        <Contaier prefecturesData={prefecturesData} />
+        <Container prefecturesData={prefecturesData} />
       </main>
     );
   } catch (e) {

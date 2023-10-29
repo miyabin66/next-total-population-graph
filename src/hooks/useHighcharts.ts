@@ -30,7 +30,7 @@ export const useHighcharts = ({ displayCondition, graphData }: Props) => {
       return DEFAULT_OPTIONS;
     }
 
-    const year = conditionData[0].data.map((dataItem) => dataItem.year);
+    const years = conditionData[0].data.map((dataItem) => dataItem.year);
     const series = conditionData.map((listItem, i) => {
       return {
         data: listItem.data.map((dataItem) => {
@@ -46,7 +46,7 @@ export const useHighcharts = ({ displayCondition, graphData }: Props) => {
         title: {
           text: '年度',
         },
-        categories: year,
+        categories: years,
       },
       yAxis: {
         title: {

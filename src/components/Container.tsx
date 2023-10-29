@@ -9,7 +9,7 @@ interface Props {
   prefecturesData: GetPrefecturesData;
 }
 
-export const Contaier = ({ prefecturesData }: Props) => {
+export const Container = ({ prefecturesData }: Props) => {
   const {
     currentPrefectures,
     displayCondition,
