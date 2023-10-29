@@ -3,6 +3,7 @@ import { Graph } from './Graph';
 import { Selector } from './Selector';
 import styles from '@/styles/components/container.module.scss';
 import { useDataSelector } from '@/hooks/useDataSelector';
+import { TITLE } from '@/constants';
 import type { GetPrefecturesData } from '@/interfaces/prefectures';
 
 interface Props {
@@ -21,7 +22,7 @@ export const Container = ({ prefecturesData }: Props) => {
 
   return (
     <section className={styles.container}>
-      <h1 className={styles.title}>都道府県人口データグラフ</h1>
+      <h1 className={styles.title}>{TITLE}</h1>
       <div className={styles.wrapperSelector}>
         <Selector
           prefecturesData={prefecturesData}

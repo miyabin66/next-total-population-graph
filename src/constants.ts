@@ -6,3 +6,5 @@ export const CORS_HEADERS = {
   'Access-Control-Allow-Origin': BASE_URL || '',
   'Access-Control-Allow-Methods': 'GET',
 };
+
+export const TITLE = '都道府県人口構成グラフ';
