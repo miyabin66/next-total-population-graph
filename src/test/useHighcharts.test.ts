@@ -1,7 +1,7 @@
 import { useHighcharts } from '@/hooks/useHighcharts';
 import { DisplayConditionsList } from '@/interfaces/prefectures';
 import { OPTIONS_SERIES } from '@/mock/highChartsData';
-import { POPULATION_DATA } from '@/mock/populationData';
+import { POPULATION_GRAPH_DATA } from '@/mock/populationData';
 import { cleanup, renderHook } from '@testing-library/react';
 
 describe('useHighchartsのテスト', () => {
@@ -13,7 +13,7 @@ describe('useHighchartsのテスト', () => {
     const { result } = renderHook(() =>
       useHighcharts({
         displayCondition: DisplayConditionsList['総人口'],
-        graphData: POPULATION_DATA,
+        graphData: POPULATION_GRAPH_DATA,
       }),
     );
 

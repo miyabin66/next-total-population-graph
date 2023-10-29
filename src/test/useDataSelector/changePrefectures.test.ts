@@ -1,5 +1,5 @@
 import { useDataSelector } from '@/hooks/useDataSelector';
-import { POPULATION_DATA } from '@/mock/populationData';
+import { POPULATION_GRAPH_DATA } from '@/mock/populationData';
 import { act, cleanup, renderHook } from '@testing-library/react';
 import type { MouseEvent } from 'react';
 
@@ -64,7 +64,7 @@ describe('changePrefecturesのテスト', () => {
       result.current.changePrefectures({
         currentTarget: { value: '北海道', id: '1', checked: true },
       } as MouseEvent<HTMLInputElement>);
-      result.current.setGraphData(POPULATION_DATA);
+      result.current.setGraphData(POPULATION_GRAPH_DATA);
     });
 
     expect(result.current.currentPrefectures).toStrictEqual({

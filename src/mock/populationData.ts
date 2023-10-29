@@ -1,6 +1,6 @@
 import type { PopulationGraphData } from '@/interfaces/population';
 
-export const POPULATION_DATA: PopulationGraphData[] = [
+export const POPULATION_GRAPH_DATA: PopulationGraphData[] = [
   {
     prefName: '北海道',
     result: {
