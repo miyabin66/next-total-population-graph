@@ -9,7 +9,7 @@ interface Props {
 
 const DEFAULT_OPTIONS = {
   title: {
-    text: 'グラフ',
+    text: '人口構成グラフ',
   },
   series: [],
 };
