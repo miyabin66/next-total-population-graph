@@ -7,14 +7,16 @@ interface Props {
   graphData: PopulationGraphData[] | undefined;
 }
 
-const DEFAULT_OPTIONS = {
-  title: {
-    text: '人口構成グラフ',
-  },
-  series: [],
-};
-
 export const useHighcharts = ({ displayCondition, graphData }: Props) => {
+  const defaultOptions = useMemo(() => {
+    return {
+      title: {
+        text: `${displayCondition}グラフ`,
+      },
+      series: [],
+    };
+  }, [displayCondition]);
+
   const conditionData = useMemo(() => {
     if (!graphData || graphData.length === 0) return [];
 
@@ -27,7 +29,7 @@ export const useHighcharts = ({ displayCondition, graphData }: Props) => {
 
   const options = useMemo(() => {
     if (!graphData || conditionData.length === 0) {
-      return DEFAULT_OPTIONS;
+      return defaultOptions;
     }
 
     const years = conditionData[0].data.map((dataItem) => dataItem.year);
@@ -41,7 +43,7 @@ export const useHighcharts = ({ displayCondition, graphData }: Props) => {
     });
 
     return {
-      ...DEFAULT_OPTIONS,
+      ...defaultOptions,
       xAxis: {
         title: {
           text: '年度',
@@ -55,7 +57,7 @@ export const useHighcharts = ({ displayCondition, graphData }: Props) => {
       },
       series,
     };
-  }, [conditionData, graphData]);
+  }, [conditionData, defaultOptions, graphData]);
 
   return { options };
 };

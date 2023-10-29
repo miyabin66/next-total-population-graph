@@ -4,6 +4,7 @@ interface Props {
   onClick: JSX.IntrinsicElements['input']['onClick'];
   className?: string;
   checked?: JSX.IntrinsicElements['input']['checked'];
+  name?: JSX.IntrinsicElements['input']['name'];
   id?: JSX.IntrinsicElements['input']['id'];
 }
 
@@ -13,6 +14,7 @@ export const Input = ({
   onClick,
   className,
   checked = false,
+  name,
   id,
 }: Props) => {
   return (
@@ -21,7 +23,7 @@ export const Input = ({
         type={type}
         id={id}
         value={value}
-        name={value?.toString()}
+        name={name ?? value?.toString()}
         onClick={onClick}
         defaultChecked={checked}
       />
