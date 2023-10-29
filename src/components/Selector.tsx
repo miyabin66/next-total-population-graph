@@ -45,6 +45,7 @@ export const Selector = ({
               key={value}
               type={'radio'}
               value={value}
+              name={'display_conditions'}
               onClick={changeDisplayCondition}
               checked={displayCondition === value}
             />
