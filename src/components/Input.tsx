@@ -21,6 +21,7 @@ export const Input = ({
         type={type}
         id={id}
         value={value}
+        name={value?.toString()}
         onClick={onClick}
         defaultChecked={checked}
       />
