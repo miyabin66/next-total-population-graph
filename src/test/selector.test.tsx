@@ -11,6 +11,7 @@ describe('Selectorの関数発火テスト', () => {
   test('都道府県と条件指定の選択関数が呼ばれているか', () => {
     const onChangeDisplayCondition = jest.fn();
     const onChangePrefectures = jest.fn();
+
     render(
       <Selector
         prefecturesData={PREFECTURES_DATA}
