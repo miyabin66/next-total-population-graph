@@ -1,5 +1,6 @@
 import { Container } from '@/components/Container';
 import { PREFECTURES_DATA } from '@/mock/prefecturesData';
+import { DisplayConditionsList } from '@/interfaces/prefectures';
 import { userEvent } from '@testing-library/user-event';
 import { cleanup, render, screen } from '@testing-library/react';
 
@@ -11,7 +12,9 @@ describe('containerのテスト', () => {
   test('ページアクセス時はGraphが非表示', () => {
     render(<Container prefecturesData={PREFECTURES_DATA} />);
 
-    const element = screen.queryByText('人口構成グラフ');
+    const element = screen.queryByText(
+      `${DisplayConditionsList['総人口']}グラフ`,
+    );
 
     expect(element).not.toBeInTheDocument();
   });
@@ -23,7 +26,9 @@ describe('containerのテスト', () => {
 
     await userEvent.click(hokkaido);
 
-    const element = screen.queryByText('人口構成グラフ');
+    const element = screen.queryByText(
+      `${DisplayConditionsList['総人口']}グラフ`,
+    );
 
     expect(element).toBeInTheDocument();
   });
