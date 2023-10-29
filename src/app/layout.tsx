@@ -14,6 +14,7 @@ const inter = Noto_Sans_JP({
 const DESCRIPTION = '都道府県の人口推移が分かるグラフです';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL || ''),
   title: TITLE,
   description: DESCRIPTION,
   openGraph: {
@@ -22,11 +23,6 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     siteName: TITLE,
-    images: [
-      {
-        url: `${BASE_URL}/og.png`,
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
