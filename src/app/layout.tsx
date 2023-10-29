@@ -1,8 +1,9 @@
+import '@/styles/globals.scss';
 import { TITLE } from '@/constants';
+import { BASE_URL } from '@/env';
 import { Noto_Sans_JP } from 'next/font/google';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import '@/styles/globals.scss';
 
 const inter = Noto_Sans_JP({
   weight: ['400', '700'],
@@ -10,9 +11,26 @@ const inter = Noto_Sans_JP({
   display: 'swap',
 });
 
+const DESCRIPTION = '都道府県の人口推移が分かるグラフです';
+
 export const metadata: Metadata = {
   title: TITLE,
-  description: '都道府県の人口推移が分かるグラフです',
+  description: DESCRIPTION,
+  openGraph: {
+    type: 'website',
+    url: BASE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    siteName: TITLE,
+    images: [
+      {
+        url: `${BASE_URL}/og.png`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
