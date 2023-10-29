@@ -1,14 +1,14 @@
 import { Selector } from '@/components/Selector';
-import { PREFECTURES_DATA } from '@/mock/prefecturesData';
 import { DisplayConditionsList } from '@/interfaces/prefectures';
+import { PREFECTURES_DATA } from '@/mock/prefecturesData';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 
-describe('useDataSelectorのテスト', () => {
+describe('Selectorの関数発火テスト', () => {
   beforeEach(() => {
     cleanup();
   });
 
-  test('checkboxの関数が呼ばれているか', () => {
+  test('都道府県と条件指定の選択関数が呼ばれているか', () => {
     const onChangeDisplayCondition = jest.fn();
     const onChangePrefectures = jest.fn();
     render(
@@ -28,13 +28,5 @@ describe('useDataSelectorのテスト', () => {
 
     expect(onChangePrefectures).toHaveBeenCalled();
     expect(onChangeDisplayCondition).toHaveBeenCalled();
-  });
-
-  test('', () => {
-    // const { result } = renderHook(() => useDataSelector());
-    // const graphData = result.current.graphData;
-    // const currentPrefectures = result.current.currentPrefectures;
-    // expect(graphData).toBe(undefined);
-    // expect(currentPrefectures).toBe(undefined);
   });
 });
