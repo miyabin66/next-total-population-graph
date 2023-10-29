@@ -7,6 +7,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const urlSearchParam = new URLSearchParams({
     prefCode: searchParams.get('prefCode') || '',
+    cityCode: '-',
   }).toString();
   const res = await fetch(
     `${RESAS_API_URL}/population/composition/perYear?${urlSearchParam}`,
