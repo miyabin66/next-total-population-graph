@@ -2,7 +2,7 @@ import { Container } from '@/components/Container';
 import { PREFECTURES_DATA } from '@/mock/prefecturesData';
 import { DisplayConditionsList } from '@/interfaces/prefectures';
 import { userEvent } from '@testing-library/user-event';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 
 describe('containerのテスト', () => {
   beforeEach(() => {
@@ -24,7 +24,9 @@ describe('containerのテスト', () => {
 
     const hokkaido = screen.getByDisplayValue('北海道');
 
-    await userEvent.click(hokkaido);
+    await waitFor(async () => {
+      await userEvent.click(hokkaido);
+    });
 
     const element = screen.getByRole('heading', {
       level: 2,
