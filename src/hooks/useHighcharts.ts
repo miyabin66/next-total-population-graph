@@ -14,6 +14,9 @@ export const useHighcharts = ({ displayCondition, graphData }: Props) => {
         text: `${displayCondition}グラフ`,
       },
       series: [],
+      accessibility: {
+        enabled: false,
+      },
     };
   }, [displayCondition]);
 
