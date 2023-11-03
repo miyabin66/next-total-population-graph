@@ -2,7 +2,6 @@
 import { usePopulation } from '@/hooks/api/usePopulation';
 import { useHighcharts } from '@/hooks/useHighcharts';
 import Highcharts from 'highcharts';
-import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import HighchartsReact from 'highcharts-react-official';
 import { type Dispatch, type SetStateAction, useEffect } from 'react';
@@ -13,7 +12,6 @@ import type {
 import type { PopulationGraphData } from '@/interfaces/population';
 
 if (typeof Highcharts === 'object') {
-  HighchartsExporting(Highcharts);
   HighchartsAccessibility(Highcharts);
 }
 
