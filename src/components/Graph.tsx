@@ -20,6 +20,7 @@ interface Props {
   currentPrefectures: PrefecturesList;
   graphData: PopulationGraphData[] | undefined;
   setGraphData: Dispatch<SetStateAction<PopulationGraphData[] | undefined>>;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Graph = ({
@@ -27,14 +28,17 @@ export const Graph = ({
   currentPrefectures,
   graphData,
   setGraphData,
+  setIsLoading,
 }: Props) => {
-  const { populationData } = usePopulation({
+  const { populationData, isLoading } = usePopulation({
     prefCode: currentPrefectures.prefCode,
   });
   const { options } = useHighcharts({
     displayCondition,
     graphData,
   });
+
+  useEffect(() => setIsLoading(isLoading), [isLoading, setIsLoading]);
 
   useEffect(() => {
     if (!populationData) return;

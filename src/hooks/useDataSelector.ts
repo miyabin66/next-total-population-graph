@@ -13,6 +13,7 @@ export const useDataSelector = () => {
     DisplayConditionsList['総人口'],
   );
   const [graphData, setGraphData] = useState<PopulationGraphData[]>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const changePrefectures: MouseEventHandler<HTMLInputElement> = useCallback(
     (e) => {
@@ -41,8 +42,10 @@ export const useDataSelector = () => {
     currentPrefectures,
     displayCondition,
     graphData,
+    isLoading,
     changePrefectures,
     changeDisplayCondition,
     setGraphData,
+    setIsLoading,
   };
 };
