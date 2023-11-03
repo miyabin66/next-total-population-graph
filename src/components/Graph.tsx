@@ -1,10 +1,11 @@
 'use client';
 import { usePopulation } from '@/hooks/api/usePopulation';
 import { useHighcharts } from '@/hooks/useHighcharts';
+import { useGrpph } from '@/hooks/useGraph';
 import Highcharts from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import HighchartsReact from 'highcharts-react-official';
-import { type Dispatch, type SetStateAction, useEffect } from 'react';
+import { type Dispatch, type SetStateAction } from 'react';
 import type {
   DisplayConditions,
   PrefecturesList,
@@ -37,29 +38,13 @@ export const Graph = ({
     displayCondition,
     graphData,
   });
-
-  useEffect(() => setIsLoading(isLoading), [isLoading, setIsLoading]);
-
-  useEffect(() => {
-    if (!populationData) return;
-
-    const data = populationData.result;
-    const prefName = currentPrefectures.prefName;
-
-    setGraphData((prev) => {
-      if (!prev) {
-        return [{ result: data, prefName }];
-      }
-
-      const exsistData = prev.filter((item) => item.prefName === prefName);
-
-      if (exsistData.length === 0) {
-        return [...prev, { result: data, prefName }];
-      }
-
-      return prev;
-    });
-  }, [currentPrefectures, populationData, setGraphData]);
+  useGrpph({
+    currentPrefectures,
+    isLoading,
+    populationData,
+    setGraphData,
+    setIsLoading,
+  });
 
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };

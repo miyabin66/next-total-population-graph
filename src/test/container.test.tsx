@@ -24,15 +24,15 @@ describe('containerのテスト', () => {
 
     const hokkaido = screen.getByDisplayValue('北海道');
 
-    await waitFor(async () => {
-      await userEvent.click(hokkaido);
-    });
+    await userEvent.click(hokkaido);
 
-    const element = screen.getByRole('heading', {
-      level: 2,
-      name: `${DisplayConditionsList['総人口']}グラフ`,
-    });
+    await waitFor(() => {
+      const element = screen.getByRole('heading', {
+        level: 2,
+        name: `${DisplayConditionsList['総人口']}グラフ`,
+      });
 
-    expect(element).toBeInTheDocument();
+      expect(element).toBeInTheDocument();
+    });
   });
 });
