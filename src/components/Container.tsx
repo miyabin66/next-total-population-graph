@@ -15,9 +15,11 @@ export const Container = ({ prefecturesData }: Props) => {
     currentPrefectures,
     displayCondition,
     graphData,
+    isLoading,
     changePrefectures,
     changeDisplayCondition,
     setGraphData,
+    setIsLoading,
   } = useDataSelector();
 
   return (
@@ -30,6 +32,7 @@ export const Container = ({ prefecturesData }: Props) => {
           changeDisplayCondition={changeDisplayCondition}
           changePrefectures={changePrefectures}
         />
+        {isLoading && <div className={styles.cover} />}
       </div>
       {currentPrefectures !== undefined && (
         <Graph
@@ -37,6 +40,7 @@ export const Container = ({ prefecturesData }: Props) => {
           currentPrefectures={currentPrefectures}
           graphData={graphData}
           setGraphData={setGraphData}
+          setIsLoading={setIsLoading}
         />
       )}
     </section>

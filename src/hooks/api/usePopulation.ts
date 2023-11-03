@@ -1,4 +1,5 @@
 import { fetcher } from './fetcher';
+import { throwError } from '@/lib/throwError';
 import useSWR from 'swr';
 import type { GetPopulationResponse } from '@/interfaces/population';
 
@@ -11,10 +12,19 @@ export const usePopulation = ({ prefCode }: Props) => {
     prefCode: prefCode?.toString() || '',
   }).toString();
 
-  const { data } = useSWR<{ data: GetPopulationResponse }>(
+  const { data, isLoading, error } = useSWR<
+    {
+      data: GetPopulationResponse;
+    },
+    Error
+  >(
     prefCode ? `/population/composition/perYear?${urlSearchParam}` : null,
     fetcher,
   );
 
-  return { populationData: data?.data };
+  if (error) {
+    throwError(error);
+  }
+
+  return { populationData: data?.data, isLoading };
 };

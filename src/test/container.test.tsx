@@ -26,9 +26,10 @@ describe('containerのテスト', () => {
 
     await userEvent.click(hokkaido);
 
-    const element = screen.queryByText(
-      `${DisplayConditionsList['総人口']}グラフ`,
-    );
+    const element = screen.getByRole('heading', {
+      level: 2,
+      name: `${DisplayConditionsList['総人口']}グラフ`,
+    });
 
     expect(element).toBeInTheDocument();
   });
