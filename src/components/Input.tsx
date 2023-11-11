@@ -1,3 +1,5 @@
+import styles from '@/styles/components/input.module.scss';
+
 interface Props {
   type: JSX.IntrinsicElements['input']['type'];
   value: JSX.IntrinsicElements['input']['value'];
@@ -18,16 +20,19 @@ export const Input = ({
   id,
 }: Props) => {
   return (
-    <label className={className}>
-      <input
-        type={type}
-        id={id}
-        value={value}
-        name={name ?? value?.toString()}
-        onClick={onClick}
-        defaultChecked={checked}
-      />
-      {value}
-    </label>
+    <div className={className}>
+      <label className={styles.pointer}>
+        <input
+          type={type}
+          id={id}
+          value={value}
+          name={name ?? value?.toString()}
+          onClick={onClick}
+          defaultChecked={checked}
+          className={styles.pointer}
+        />
+        {value}
+      </label>
+    </div>
   );
 };
