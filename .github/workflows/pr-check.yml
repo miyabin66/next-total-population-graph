@@ -45,7 +45,7 @@ jobs:
       - name: Prettier Check
         run: yarn prettier:check
 
-      - name: Jest Chack
+      - name: Jest Check
         run: yarn test:check
 
       - name: Build Check
