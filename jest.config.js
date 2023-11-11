@@ -9,9 +9,9 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
   },
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: './fixJsDomEnvironment.ts',
   globals: {
-    fetch,
+    fetch: global.fetch,
   },
 };
 

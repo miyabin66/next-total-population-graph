@@ -29,7 +29,11 @@
   },
   "overrides": [
     {
-      "files": ["src/app/*.tsx", "src/app/api/**/*.ts"],
+      "files": [
+        "src/app/*.tsx",
+        "src/app/api/**/*.ts",
+        "./fixJsDomEnvironment.ts"
+      ],
       "rules": {
         "import/no-default-export": "off",
         "import/no-unused-modules": "off"

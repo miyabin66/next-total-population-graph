@@ -32,7 +32,7 @@ export const Selector = ({
               id={item.prefCode.toString()}
               value={item.prefName}
               onClick={changePrefectures}
-              className={styles.label}
+              className={styles.checkbox}
             />
           );
         })}
